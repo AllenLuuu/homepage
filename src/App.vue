@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import { darkTheme, NConfigProvider } from "naive-ui";
+import { darkTheme } from "naive-ui";
 import Main from "./components/Main.vue";
 const isDark = ref(false);
 

@@ -1,18 +1,4 @@
 <script setup lang="ts">
-import {
-  NAvatar,
-  NLayout,
-  NLayoutContent,
-  NLayoutHeader,
-  NLayoutFooter,
-  NGrid,
-  NGi,
-  NCard,
-  NSpace,
-  NButton,
-  NIcon,
-  NMenu,
-} from "naive-ui";
 import { DarkModeOutlined, LightModeOutlined } from "@vicons/material";
 </script>
 
