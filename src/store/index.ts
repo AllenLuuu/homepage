@@ -10,9 +10,6 @@ export const useMode = defineStore("mode", {
     },
   },
   actions: {
-    toggle() {
-      this.dark = !this.dark;
-    },
     setMode(mode: string) {
         this.dark = mode === "dark";
     }
