@@ -11,7 +11,7 @@ export default defineConfig({
     AutoImport({
       imports: [
         "vue",
-        // "pinia",
+        "pinia",
       ],
     }),
     Components({

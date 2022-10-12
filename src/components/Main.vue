@@ -1,5 +1,16 @@
 <script setup lang="ts">
 import { DarkModeOutlined, LightModeOutlined } from "@vicons/material";
+import { useMode } from "../store/index";
+
+const mode = useMode();
+
+function changeMode() {
+  if (mode.mode === "dark") {
+    mode.setMode("light");
+  } else {
+    mode.setMode("dark");
+  }
+};
 </script>
 
 <template>
@@ -12,10 +23,11 @@ import { DarkModeOutlined, LightModeOutlined } from "@vicons/material";
           </NGi>
           <NGi class="left">
             <NSpace size="large">
-              <NButton text :focusable="false">
+              <NButton text :focusable="false" @click="changeMode">
                 <template #icon>
                   <NIcon size="20">
-                    <LightModeOutlined />
+                    <LightModeOutlined v-if="mode.mode === 'dark'" />
+                    <DarkModeOutlined v-else />
                   </NIcon>
                 </template>
               </NButton>

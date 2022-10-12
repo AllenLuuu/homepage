@@ -2,20 +2,29 @@
 import { onMounted, ref } from "vue";
 import { darkTheme } from "naive-ui";
 import Main from "./components/Main.vue";
-const isDark = ref(false);
+import { useMode } from "./store/index";
+
+const mode = useMode();
 
 onMounted(() => {
   let media = window.matchMedia("(prefers-color-scheme: dark)");
-  isDark.value = media.matches;
-  console.log("isDark", isDark.value);
+  if (media.matches) {
+    mode.setMode("dark");
+  } else {
+    mode.setMode("light");
+  }
   media.addEventListener("change", (e) => {
-    isDark.value = e.matches;
+    if (e.matches) {
+      mode.setMode("dark");
+    } else {
+      mode.setMode("light");
+    }
   });
 });
 </script>
 
 <template>
-  <n-config-provider :theme="isDark ? darkTheme : null">
+  <n-config-provider :theme="mode.mode === 'dark' ? darkTheme : null">
     <Main />
   </n-config-provider>
 </template>
