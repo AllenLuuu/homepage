@@ -10,7 +10,9 @@ function changeMode() {
   } else {
     mode.setMode("dark");
   }
-};
+}
+
+function showQRCode() {}
 </script>
 
 <template>
@@ -18,10 +20,10 @@ function changeMode() {
     <NLayout embedded>
       <NLayoutHeader>
         <NGrid :cols="2">
-          <NGi>
-            <h1>Header</h1>
-          </NGi>
           <NGi class="left">
+            <h1>游逛者小站</h1>
+          </NGi>
+          <NGi class="right">
             <NSpace size="large">
               <NButton text :focusable="false" @click="changeMode">
                 <template #icon>
@@ -31,8 +33,27 @@ function changeMode() {
                   </NIcon>
                 </template>
               </NButton>
-              <NButton text :focusable="false"> GitHub </NButton>
-              <NButton text :focusable="false"> 公众号 </NButton>
+
+              <a
+                class="link"
+                href="https://github.com/AllenLuuu"
+                target="_blank"
+              >
+                GitHub
+              </a>
+              <n-popover placement="bottom-end" trigger="click">
+                <template #trigger>
+                  <NButton text>
+                    公众号
+                  </NButton>
+                </template>
+                <div>
+                  <img
+                    src="gzh.bmp"
+                    alt="公众号"
+                  />
+                </div>
+              </n-popover>
             </NSpace>
           </NGi>
         </NGrid>
@@ -42,15 +63,25 @@ function changeMode() {
           <NGi></NGi>
           <NGi :span="3">
             <NSpace vertical>
-              <NAvatar round size="large"> ? </NAvatar>
+              <div class="avatar">
+                <NAvatar round :size="100"> Allen Lu </NAvatar>
+              </div>
+              <div>
+                <h1>Allen Lu</h1>
+                <p>游逛者</p>
+              </div>
               <NCard title="每日一句">
                 <p>你好</p>
               </NCard>
               <NCard title="精选图片">
                 <p>你好</p>
               </NCard>
-              <NSpace justify="center">
-                <div style="width: 300px; margin: 0 auto; padding: 5px 0">
+              <NCard title="最新文章">
+                <p>你好</p>
+                <p>你好</p>
+              </NCard>
+              <NSpace justify="center" :size="50" style="margin-top: 20px">
+                <div style="margin: 0 auto; padding: 5px 0">
                   <a
                     target="_blank"
                     href="https://beian.miit.gov.cn/"
@@ -75,7 +106,7 @@ function changeMode() {
                   </a>
                 </div>
 
-                <div style="width: 300px; margin: 0 auto; padding: 5px 0">
+                <div style="margin: 0 auto; padding: 5px 0">
                   <a
                     target="_blank"
                     href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32050802011592"
@@ -111,15 +142,26 @@ function changeMode() {
 </template>
 
 <style scoped>
-.center {
+.avatar {
+  padding-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .left {
+  padding-left: 50px;
+}
+.right {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding-right: 20px;
+}
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+.link:hover {
+  color: #5acea7;
 }
 </style>

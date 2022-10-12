@@ -18,6 +18,7 @@ declare module '@vue/runtime-core' {
     NLayout: typeof import('naive-ui')['NLayout']
     NLayoutContent: typeof import('naive-ui')['NLayoutContent']
     NLayoutHeader: typeof import('naive-ui')['NLayoutHeader']
+    NPopover: typeof import('naive-ui')['NPopover']
     NSpace: typeof import('naive-ui')['NSpace']
     Pictures: typeof import('./src/components/Pictures.vue')['default']
     Sentence: typeof import('./src/components/Sentence.vue')['default']
