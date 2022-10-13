@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { DarkModeOutlined, LightModeOutlined } from "@vicons/material";
+import { MenuOption } from "naive-ui";
+import { reactive, h } from "vue";
 import { useMode } from "../store/index";
 
 const mode = useMode();
@@ -11,12 +13,67 @@ function changeMode() {
     mode.setMode("dark");
   }
 }
+
+const menuOptions = reactive<MenuOption[]>([
+  {
+    type: "group",
+    label: "生活",
+    key: "life",
+    children: [
+      {
+        label: "影集",
+        key: "album",
+        href: "photo.allenluuu.com",
+        disabled: true,
+      },
+      {
+        label: "摘抄",
+        key: "collection",
+        href: "collection.allenluuu.com",
+        disabled: true,
+      },
+    ],
+  },
+  {
+    type: "group",
+    label: "项目",
+    key: "projects",
+    children: [
+      {
+        label: "随机塔罗抽牌器",
+        key: "random-tarot",
+        href: "https://www.allenluuu.com/random-tarot",
+      },
+      {
+        label: "敬请期待...",
+        key: "coming-soon",
+        disabled: true,
+      },
+    ],
+  },
+  // {
+  //   label: "项目",
+  //   key: "projects",
+  //   children: [],
+  // },
+]);
+
+function renderMenuLabel(option: MenuOption) {
+  if ("href" in option && !option.disabled) {
+    return h(
+      "a",
+      { href: option.href, target: "_blank" },
+      option.label as string
+    );
+  }
+  return option.label as string;
+}
 </script>
 
 <template>
   <div class="container" ref="containerRef">
     <NLayout embedded style="height: 100vh">
-      <NLayoutHeader style="height: 85px">
+      <NLayoutHeader style="height: 85px" bordered>
         <NGrid :cols="2">
           <NGi class="left">
             <h1>游逛者小站</h1>
@@ -59,7 +116,17 @@ function changeMode() {
       >
         <NLayout :native-scrollbar="false">
           <NGrid x-gap="12" :cols="5" class="main">
-            <NGi></NGi>
+            <NGi>
+              <NLayoutSider bordered style="height: 100%; position: fixed">
+                <NMenu
+                  accordion
+                  :value="null"
+                  :options="menuOptions"
+                  :render-label="renderMenuLabel"
+                >
+                </NMenu>
+              </NLayoutSider>
+            </NGi>
             <NGi :span="3">
               <NSpace vertical>
                 <div id="intro">
