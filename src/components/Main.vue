@@ -136,20 +136,14 @@ function renderMenuLabel(option: MenuOption) {
                   <NAvatar round :size="100"> Allen Lu </NAvatar>
                 </div>
                 <div>
-                  <h1>Allen Lu</h1>
-                  <p>游逛者</p>
+                  <h1>你好</h1>
+                  <p>你好</p>
                 </div>
               </div>
-              <NCard id="sentence" title="每日一句">
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-              </NCard>
+              <div id="sentence">
+                <h1>每日一句</h1>
+                <Sentence />
+              </div>
               <NCard id="pictures" title="精选图片">
                 <p>你好</p>
                 <p>你好</p>
