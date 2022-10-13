@@ -8,6 +8,9 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Main: typeof import('./src/components/Main.vue')['default']
+    NAffix: typeof import('naive-ui')['NAffix']
+    NAnchor: typeof import('naive-ui')['NAnchor']
+    NAnchorLink: typeof import('naive-ui')['NAnchorLink']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
@@ -20,6 +23,7 @@ declare module '@vue/runtime-core' {
     NLayoutHeader: typeof import('naive-ui')['NLayoutHeader']
     NPopover: typeof import('naive-ui')['NPopover']
     NSpace: typeof import('naive-ui')['NSpace']
+    NTag: typeof import('naive-ui')['NTag']
     Pictures: typeof import('./src/components/Pictures.vue')['default']
     Sentence: typeof import('./src/components/Sentence.vue')['default']
   }

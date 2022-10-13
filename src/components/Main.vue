@@ -11,14 +11,12 @@ function changeMode() {
     mode.setMode("dark");
   }
 }
-
-function showQRCode() {}
 </script>
 
 <template>
-  <div class="container">
-    <NLayout embedded>
-      <NLayoutHeader>
+  <div class="container" ref="containerRef">
+    <NLayout embedded style="height: 100vh">
+      <NLayoutHeader style="height: 85px">
         <NGrid :cols="2">
           <NGi class="left">
             <h1>游逛者小站</h1>
@@ -43,100 +41,136 @@ function showQRCode() {}
               </a>
               <n-popover placement="bottom-end" trigger="click">
                 <template #trigger>
-                  <NButton text>
-                    公众号
-                  </NButton>
+                  <NButton text> 公众号 </NButton>
                 </template>
                 <div>
-                  <img
-                    src="gzh.bmp"
-                    alt="公众号"
-                  />
+                  <img src="gzh.bmp" alt="公众号" />
                 </div>
               </n-popover>
             </NSpace>
           </NGi>
         </NGrid>
       </NLayoutHeader>
-      <NLayoutContent>
-        <NGrid x-gap="12" :cols="5" class="main">
-          <NGi></NGi>
-          <NGi :span="3">
-            <NSpace vertical>
-              <div class="avatar">
-                <NAvatar round :size="100"> Allen Lu </NAvatar>
-              </div>
-              <div>
-                <h1>Allen Lu</h1>
-                <p>游逛者</p>
-              </div>
-              <NCard title="每日一句">
-                <p>你好</p>
-              </NCard>
-              <NCard title="精选图片">
-                <p>你好</p>
-              </NCard>
-              <NCard title="最新文章">
-                <p>你好</p>
-                <p>你好</p>
-              </NCard>
-              <NSpace justify="center" :size="50" style="margin-top: 20px">
-                <div style="margin: 0 auto; padding: 5px 0">
-                  <a
-                    target="_blank"
-                    href="https://beian.miit.gov.cn/"
-                    style="
-                      display: inline-block;
-                      text-decoration: none;
-                      height: 20px;
-                      line-height: 20px;
-                    "
-                  >
-                    <p
+      <NLayout
+        id="main-content"
+        position="absolute"
+        style="top: 85px"
+        has-sider
+      >
+        <NLayout :native-scrollbar="false">
+          <NGrid x-gap="12" :cols="5" class="main">
+            <NGi></NGi>
+            <NGi :span="3">
+              <NSpace vertical>
+                <div id="intro">
+                  <div class="avatar">
+                    <NAvatar round :size="100"> Allen Lu </NAvatar>
+                  </div>
+                  <div>
+                    <h1>Allen Lu</h1>
+                    <p>游逛者</p>
+                  </div>
+                </div>
+                <NCard id="sentence" title="每日一句">
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                </NCard>
+                <NCard id="pictures" title="精选图片">
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                </NCard>
+                <NCard id="articles" title="最新文章">
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                  <p>你好</p>
+                </NCard>
+                <NSpace justify="center" :size="50" style="margin-top: 20px">
+                  <div style="margin: 0 auto; padding: 5px 0">
+                    <a
+                      target="_blank"
+                      href="https://beian.miit.gov.cn/"
                       style="
-                        float: left;
+                        display: inline-block;
+                        text-decoration: none;
                         height: 20px;
                         line-height: 20px;
-                        margin: 0px 0px 0px 5px;
-                        color: #939393;
                       "
                     >
-                      苏ICP备2022036267号-1
-                    </p>
-                  </a>
-                </div>
+                      <p
+                        style="
+                          float: left;
+                          height: 20px;
+                          line-height: 20px;
+                          margin: 0px 0px 0px 5px;
+                          color: #939393;
+                        "
+                      >
+                        苏ICP备2022036267号-1
+                      </p>
+                    </a>
+                  </div>
 
-                <div style="margin: 0 auto; padding: 5px 0">
-                  <a
-                    target="_blank"
-                    href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32050802011592"
-                    style="
-                      display: inline-block;
-                      text-decoration: none;
-                      height: 20px;
-                      line-height: 20px;
-                    "
-                  >
-                    <img src="beian-icon.png" style="float: left" />
-                    <p
+                  <div style="margin: 0 auto; padding: 5px 0">
+                    <a
+                      target="_blank"
+                      href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32050802011592"
                       style="
-                        float: left;
+                        display: inline-block;
+                        text-decoration: none;
                         height: 20px;
                         line-height: 20px;
-                        margin: 0px 0px 0px 5px;
-                        color: #939393;
                       "
                     >
-                      苏公网安备 32050802011592号
-                    </p>
-                  </a>
-                </div>
+                      <img src="beian-icon.png" style="float: left" />
+                      <p
+                        style="
+                          float: left;
+                          height: 20px;
+                          line-height: 20px;
+                          margin: 0px 0px 0px 5px;
+                          color: #939393;
+                        "
+                      >
+                        苏公网安备 32050802011592号
+                      </p>
+                    </a>
+                  </div>
+                </NSpace>
               </NSpace>
-            </NSpace>
-          </NGi>
-          <NGi></NGi>
-        </NGrid>
-      </NLayoutContent>
+            </NGi>
+            <NGi>
+              <div class="side-anchor">
+                <n-anchor :show-rail="true" offset-target="#main-content">
+                  <n-anchor-link title="个人介绍" href="#intro" />
+                  <n-anchor-link title="每日一句" href="#sentence" />
+                  <n-anchor-link title="精选图片" href="#pictures" />
+                  <n-anchor-link title="最新文章" href="#articles" />
+                </n-anchor>
+              </div>
+            </NGi>
+          </NGrid>
+        </NLayout>
+        <!-- </NLayoutContent> -->
+      </NLayout>
     </NLayout>
   </div>
 </template>
@@ -163,5 +197,9 @@ function showQRCode() {}
 }
 .link:hover {
   color: #5acea7;
+}
+.side-anchor {
+  position: fixed;
+  padding: 32px;
 }
 </style>
