@@ -1,10 +1,17 @@
 <script setup lang="ts">
 import { DarkModeOutlined, LightModeOutlined } from "@vicons/material";
+import { computed } from "@vue/reactivity";
 import { MenuOption } from "naive-ui";
 import { reactive, h } from "vue";
 import { useMode } from "../store/index";
 
 const mode = useMode();
+
+const menuBorderColor = computed(() => {
+  return mode.mode === "dark"
+    ? "rgba(255, 255, 255, 0.09)"
+    : "rgb(239, 239, 245)";
+});
 
 function changeMode() {
   if (mode.mode === "dark") {
@@ -51,11 +58,6 @@ const menuOptions = reactive<MenuOption[]>([
       },
     ],
   },
-  // {
-  //   label: "项目",
-  //   key: "projects",
-  //   children: [],
-  // },
 ]);
 
 function renderMenuLabel(option: MenuOption) {
@@ -72,7 +74,7 @@ function renderMenuLabel(option: MenuOption) {
 
 <template>
   <div class="container" ref="containerRef">
-    <NLayout embedded style="height: 100vh">
+    <NLayout style="height: 100vh">
       <NLayoutHeader style="height: 85px" bordered>
         <NGrid :cols="2">
           <NGi class="left">
@@ -113,130 +115,128 @@ function renderMenuLabel(option: MenuOption) {
         position="absolute"
         style="top: 85px"
         has-sider
+        :native-scrollbar="false"
       >
-        <NLayout :native-scrollbar="false">
-          <NGrid x-gap="12" :cols="5" class="main">
-            <NGi>
-              <NLayoutSider bordered style="height: 100%; position: fixed">
-                <NMenu
-                  accordion
-                  :value="null"
-                  :options="menuOptions"
-                  :render-label="renderMenuLabel"
-                >
-                </NMenu>
-              </NLayoutSider>
-            </NGi>
-            <NGi :span="3">
-              <NSpace vertical>
-                <div id="intro">
-                  <div class="avatar">
-                    <NAvatar round :size="100"> Allen Lu </NAvatar>
-                  </div>
-                  <div>
-                    <h1>Allen Lu</h1>
-                    <p>游逛者</p>
-                  </div>
+        <NGrid x-gap="12" :cols="5" class="main">
+          <NGi>
+            <NLayoutSider width="18vw" class="menu-container" bordered>
+              <NMenu
+                class="menu"
+                accordion
+                :value="null"
+                :options="menuOptions"
+                :render-label="renderMenuLabel"
+              />
+            </NLayoutSider>
+          </NGi>
+          <NGi :span="3">
+            <NSpace vertical>
+              <div id="intro">
+                <div class="avatar">
+                  <NAvatar round :size="100"> Allen Lu </NAvatar>
                 </div>
-                <NCard id="sentence" title="每日一句">
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                </NCard>
-                <NCard id="pictures" title="精选图片">
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                </NCard>
-                <NCard id="articles" title="最新文章">
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                  <p>你好</p>
-                </NCard>
-                <NSpace justify="center" :size="50" style="margin-top: 20px">
-                  <div style="margin: 0 auto; padding: 5px 0">
-                    <a
-                      target="_blank"
-                      href="https://beian.miit.gov.cn/"
-                      style="
-                        display: inline-block;
-                        text-decoration: none;
-                        height: 20px;
-                        line-height: 20px;
-                      "
-                    >
-                      <p
-                        style="
-                          float: left;
-                          height: 20px;
-                          line-height: 20px;
-                          margin: 0px 0px 0px 5px;
-                          color: #939393;
-                        "
-                      >
-                        苏ICP备2022036267号-1
-                      </p>
-                    </a>
-                  </div>
-
-                  <div style="margin: 0 auto; padding: 5px 0">
-                    <a
-                      target="_blank"
-                      href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32050802011592"
-                      style="
-                        display: inline-block;
-                        text-decoration: none;
-                        height: 20px;
-                        line-height: 20px;
-                      "
-                    >
-                      <img src="beian-icon.png" style="float: left" />
-                      <p
-                        style="
-                          float: left;
-                          height: 20px;
-                          line-height: 20px;
-                          margin: 0px 0px 0px 5px;
-                          color: #939393;
-                        "
-                      >
-                        苏公网安备 32050802011592号
-                      </p>
-                    </a>
-                  </div>
-                </NSpace>
-              </NSpace>
-            </NGi>
-            <NGi>
-              <div class="side-anchor">
-                <n-anchor :show-rail="true" offset-target="#main-content">
-                  <n-anchor-link title="个人介绍" href="#intro" />
-                  <n-anchor-link title="每日一句" href="#sentence" />
-                  <n-anchor-link title="精选图片" href="#pictures" />
-                  <n-anchor-link title="最新文章" href="#articles" />
-                </n-anchor>
+                <div>
+                  <h1>Allen Lu</h1>
+                  <p>游逛者</p>
+                </div>
               </div>
-            </NGi>
-          </NGrid>
-        </NLayout>
-        <!-- </NLayoutContent> -->
+              <NCard id="sentence" title="每日一句">
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+              </NCard>
+              <NCard id="pictures" title="精选图片">
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+              </NCard>
+              <NCard id="articles" title="最新文章">
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+                <p>你好</p>
+              </NCard>
+              <NSpace justify="center" :size="50" style="margin-top: 20px">
+                <div style="margin: 0 auto; padding: 5px 0">
+                  <a
+                    target="_blank"
+                    href="https://beian.miit.gov.cn/"
+                    style="
+                      display: inline-block;
+                      text-decoration: none;
+                      height: 20px;
+                      line-height: 20px;
+                    "
+                  >
+                    <p
+                      style="
+                        float: left;
+                        height: 20px;
+                        line-height: 20px;
+                        margin: 0px 0px 0px 5px;
+                        color: #939393;
+                      "
+                    >
+                      苏ICP备2022036267号-1
+                    </p>
+                  </a>
+                </div>
+
+                <div style="margin: 0 auto; padding: 5px 0">
+                  <a
+                    target="_blank"
+                    href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32050802011592"
+                    style="
+                      display: inline-block;
+                      text-decoration: none;
+                      height: 20px;
+                      line-height: 20px;
+                    "
+                  >
+                    <img src="beian-icon.png" style="float: left" />
+                    <p
+                      style="
+                        float: left;
+                        height: 20px;
+                        line-height: 20px;
+                        margin: 0px 0px 0px 5px;
+                        color: #939393;
+                      "
+                    >
+                      苏公网安备 32050802011592号
+                    </p>
+                  </a>
+                </div>
+              </NSpace>
+            </NSpace>
+          </NGi>
+          <NGi>
+            <div class="side-anchor">
+              <n-anchor :show-rail="true" offset-target="#main-content">
+                <n-anchor-link title="个人介绍" href="#intro" />
+                <n-anchor-link title="每日一句" href="#sentence" />
+                <n-anchor-link title="精选图片" href="#pictures" />
+                <n-anchor-link title="最新文章" href="#articles" />
+              </n-anchor>
+            </div>
+          </NGi>
+        </NGrid>
       </NLayout>
     </NLayout>
   </div>
@@ -268,5 +268,12 @@ function renderMenuLabel(option: MenuOption) {
 .side-anchor {
   position: fixed;
   padding: 32px;
+}
+.menu {
+  width: 18vw;
+}
+.menu-container {
+  position: fixed;
+  height: 100%;
 }
 </style>
