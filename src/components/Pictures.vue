@@ -6,15 +6,15 @@ import { useWindowWidth } from "../store/index";
 const windowWidth = useWindowWidth();
 
 const pictures = ref<string[]>([
-  "https://www.allenluuu.com/static/random-tarot/cards/Major/Fool.jpg",
-  "https://www.allenluuu.com/static/random-tarot/cards/Major/Magician.jpg",
-  "https://www.allenluuu.com/static/random-tarot/cards/Major/High_Priestess.jpg",
-  "https://www.allenluuu.com/static/random-tarot/cards/Major/Empress.jpg",
-  "https://www.allenluuu.com/static/random-tarot/cards/Major/Emperor.jpg",
-  "https://www.allenluuu.com/static/random-tarot/cards/Major/Hierophant.jpg",
-  "https://www.allenluuu.com/static/random-tarot/cards/Major/Lovers.jpg",
-  "https://www.allenluuu.com/static/random-tarot/cards/Major/Chariot.jpg",
-  "https://www.allenluuu.com/static/random-tarot/cards/Major/Strength.jpg",
+  "https://www.allenluuu.com/static/album/1.jpg",
+  "https://www.allenluuu.com/static/album/2.jpg",
+  "https://www.allenluuu.com/static/album/3.jpg",
+  "https://www.allenluuu.com/static/album/4.jpg",
+  "https://www.allenluuu.com/static/album/5.jpg",
+  "https://www.allenluuu.com/static/album/6.jpg",
+  "https://www.allenluuu.com/static/album/7.jpg",
+  "https://www.allenluuu.com/static/album/8.jpg",
+  "https://www.allenluuu.com/static/album/9.jpg",
 ]);
 </script>
 
