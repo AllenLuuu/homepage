@@ -23,7 +23,6 @@ onMounted(() => {
   });
   
   windowWidth.setWidth(document.body.clientWidth);
-  console.log(document);
   window.onresize = () => {
     windowWidth.setWidth(document.body.clientWidth);
   };

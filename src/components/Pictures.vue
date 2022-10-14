@@ -4,7 +4,6 @@ import { ref } from "vue";
 import { useWindowWidth } from "../store/index";
 
 const windowWidth = useWindowWidth();
-console.log(windowWidth.width);
 
 const pictures = ref<string[]>([
   "https://www.allenluuu.com/static/random-tarot/cards/Major/Fool.jpg",
