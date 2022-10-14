@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { DarkModeOutlined, LightModeOutlined, CameraOutlined, BookOutlined } from "@vicons/material";
+import {
+  DarkModeOutlined,
+  LightModeOutlined,
+  CameraOutlined,
+  BookOutlined,
+} from "@vicons/material";
 import { NPopover } from "naive-ui";
 import { MenuOption } from "naive-ui";
 import { reactive, h } from "vue";
@@ -62,8 +67,7 @@ function renderMenuLabel(option: MenuOption) {
       NPopover,
       { placement: "top", trigger: "hover" },
       {
-        trigger: () =>
-          h("span", option.label as string),
+        trigger: () => h("span", option.label as string),
         default: () => h("span", "还没做😖"),
       }
     );
@@ -148,10 +152,7 @@ function renderMenuLabel(option: MenuOption) {
                 </div>
               </div>
               <Sentence />
-              <div id="pictures">
-                <h1>精选图片</h1>
-                <Pictures />
-              </div>
+              <Pictures />
               <div id="articles">
                 <h1>最新文章</h1>
                 <Articles />
