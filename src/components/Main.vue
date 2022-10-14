@@ -153,10 +153,7 @@ function renderMenuLabel(option: MenuOption) {
               </div>
               <Sentence />
               <Pictures />
-              <div id="articles">
-                <h1>最新文章</h1>
-                <Articles />
-              </div>
+              <Articles />
               <NSpace justify="center" :size="50" style="margin-top: 20px">
                 <div style="margin: 0 auto; padding: 5px 0">
                   <a
