@@ -1,17 +1,11 @@
 <script setup lang="ts">
 import { DarkModeOutlined, LightModeOutlined } from "@vicons/material";
-import { computed } from "@vue/reactivity";
+import { NPopover } from "naive-ui";
 import { MenuOption } from "naive-ui";
 import { reactive, h } from "vue";
 import { useMode } from "../store/index";
 
 const mode = useMode();
-
-const menuBorderColor = computed(() => {
-  return mode.mode === "dark"
-    ? "rgba(255, 255, 255, 0.09)"
-    : "rgb(239, 239, 245)";
-});
 
 function changeMode() {
   if (mode.mode === "dark") {
@@ -61,14 +55,25 @@ const menuOptions = reactive<MenuOption[]>([
 ]);
 
 function renderMenuLabel(option: MenuOption) {
-  if ("href" in option && !option.disabled) {
+  if (option.disabled && option.label !== "敬请期待...") {
+    return h(
+      NPopover,
+      { placement: "top", trigger: "hover" },
+      {
+        trigger: () =>
+          h("span", option.label as string),
+        default: () => h("span", "还没做😖"),
+      }
+    );
+  } else if ("href" in option) {
     return h(
       "a",
       { href: option.href, target: "_blank" },
       option.label as string
     );
+  } else {
+    return option.label as string;
   }
-  return option.label as string;
 }
 </script>
 
@@ -140,32 +145,15 @@ function renderMenuLabel(option: MenuOption) {
                   <p>你好</p>
                 </div>
               </div>
-              <div id="sentence">
-                <h1>每日一句</h1>
-                <Sentence />
+              <Sentence />
+              <div id="pictures">
+                <h1>精选图片</h1>
+                <Pictures />
               </div>
-              <NCard id="pictures" title="精选图片">
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-              </NCard>
-              <NCard id="articles" title="最新文章">
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-                <p>你好</p>
-              </NCard>
+              <div id="articles">
+                <h1>最新文章</h1>
+                <Articles />
+              </div>
               <NSpace justify="center" :size="50" style="margin-top: 20px">
                 <div style="margin: 0 auto; padding: 5px 0">
                   <a

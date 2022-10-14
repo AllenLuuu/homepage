@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Articles: typeof import('./src/components/Articles.vue')['default']
     Main: typeof import('./src/components/Main.vue')['default']
     NAffix: typeof import('naive-ui')['NAffix']
     NAnchor: typeof import('naive-ui')['NAnchor']
