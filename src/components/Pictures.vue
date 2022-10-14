@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import { RefreshFilled } from "@vicons/material";
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
+import { useWindowWidth } from "../store/index";
 
-const clientWidth = ref(0);
-onMounted(() => {
-  clientWidth.value = document.body.clientWidth;
-  window.onresize = () => {
-    clientWidth.value = document.body.clientWidth;
-  };
-});
+const windowWidth = useWindowWidth();
+console.log(windowWidth.width);
 
 const pictures = ref<string[]>([
   "https://www.allenluuu.com/static/random-tarot/cards/Major/Fool.jpg",
@@ -48,60 +44,60 @@ const pictures = ref<string[]>([
       <NSpace vertical>
         <NSpace justify="center">
           <NImage
-            :width="clientWidth * 0.18"
-            :height="clientWidth * 0.18"
+            :width="windowWidth.width * 0.18"
+            :height="windowWidth.width * 0.18"
             object-fit="cover"
             :src="pictures[0]"
           />
           <NImage
-            :width="clientWidth * 0.18"
-            :height="clientWidth * 0.18"
+            :width="windowWidth.width * 0.18"
+            :height="windowWidth.width * 0.18"
             object-fit="cover"
             :src="pictures[1]"
           />
           <NImage
-            :width="clientWidth * 0.18"
-            :height="clientWidth * 0.18"
+            :width="windowWidth.width * 0.18"
+            :height="windowWidth.width * 0.18"
             object-fit="cover"
             :src="pictures[2]"
           />
         </NSpace>
         <NSpace justify="center">
           <NImage
-            :width="clientWidth * 0.18"
-            :height="clientWidth * 0.18"
+            :width="windowWidth.width * 0.18"
+            :height="windowWidth.width * 0.18"
             object-fit="cover"
             :src="pictures[3]"
           />
           <NImage
-            :width="clientWidth * 0.18"
-            :height="clientWidth * 0.18"
+            :width="windowWidth.width * 0.18"
+            :height="windowWidth.width * 0.18"
             object-fit="cover"
             :src="pictures[4]"
           />
           <NImage
-            :width="clientWidth * 0.18"
-            :height="clientWidth * 0.18"
+            :width="windowWidth.width * 0.18"
+            :height="windowWidth.width * 0.18"
             object-fit="cover"
             :src="pictures[5]"
           />
         </NSpace>
         <NSpace justify="center">
           <NImage
-            :width="clientWidth * 0.18"
-            :height="clientWidth * 0.18"
+            :width="windowWidth.width * 0.18"
+            :height="windowWidth.width * 0.18"
             object-fit="cover"
             :src="pictures[6]"
           />
           <NImage
-            :width="clientWidth * 0.18"
-            :height="clientWidth * 0.18"
+            :width="windowWidth.width * 0.18"
+            :height="windowWidth.width * 0.18"
             object-fit="cover"
             :src="pictures[7]"
           />
           <NImage
-            :width="clientWidth * 0.18"
-            :height="clientWidth * 0.18"
+            :width="windowWidth.width * 0.18"
+            :height="windowWidth.width * 0.18"
             object-fit="cover"
             :src="pictures[8]"
           />

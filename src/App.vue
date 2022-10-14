@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted } from "vue";
 import { darkTheme } from "naive-ui";
 import Main from "./components/Main.vue";
-import { useMode } from "./store/index";
+import { useMode, useWindowWidth } from "./store/index";
 
 const mode = useMode();
+const windowWidth = useWindowWidth();
 
 onMounted(() => {
   let media = window.matchMedia("(prefers-color-scheme: dark)");
@@ -20,6 +21,12 @@ onMounted(() => {
       mode.setMode("light");
     }
   });
+  
+  windowWidth.setWidth(document.body.clientWidth);
+  console.log(document);
+  window.onresize = () => {
+    windowWidth.setWidth(document.body.clientWidth);
+  };
 });
 </script>
 
