@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DarkModeOutlined, LightModeOutlined } from "@vicons/material";
+import { DarkModeOutlined, LightModeOutlined, CameraOutlined, BookOutlined } from "@vicons/material";
 import { NPopover } from "naive-ui";
 import { MenuOption } from "naive-ui";
 import { reactive, h } from "vue";
@@ -26,12 +26,14 @@ const menuOptions = reactive<MenuOption[]>([
         key: "album",
         href: "photo.allenluuu.com",
         disabled: true,
+        icon: () => h(CameraOutlined),
       },
       {
         label: "摘抄",
         key: "collection",
         href: "collection.allenluuu.com",
         disabled: true,
+        icon: () => h(BookOutlined),
       },
     ],
   },
