@@ -12,6 +12,8 @@ import { useMode } from "../store/index";
 import { PlanetOutline } from "@vicons/ionicons5";
 import Hexagram from "../assets/hexagram.vue";
 import Tags from "./Tags.vue";
+import gzhQrCode from "/gzh.jpg";
+import beianIcon from "/beian-icon.png";
 
 const mode = useMode();
 
@@ -123,7 +125,7 @@ function renderMenuLabel(option: MenuOption) {
                   <NButton text> 公众号 </NButton>
                 </template>
                 <div>
-                  <img src="gzh.bmp" alt="公众号" />
+                  <img :src="gzhQrCode" alt="公众号" />
                 </div>
               </n-popover>
             </NSpace>
@@ -140,9 +142,7 @@ function renderMenuLabel(option: MenuOption) {
         <NGrid x-gap="12" :cols="5" class="main">
           <NGi>
             <NLayoutSider width="18vw" class="menu-container" bordered>
-              <NMenu
-                class="menu"
-                accordion
+              <n-menu
                 :value="null"
                 :options="menuOptions"
                 :render-label="renderMenuLabel"
@@ -207,7 +207,7 @@ function renderMenuLabel(option: MenuOption) {
                       line-height: 20px;
                     "
                   >
-                    <img src="beian-icon.png" style="float: left" />
+                    <img :src="beianIcon" style="float: left" />
                     <p
                       style="
                         float: left;
@@ -269,9 +269,6 @@ function renderMenuLabel(option: MenuOption) {
 .side-anchor {
   position: fixed;
   padding: 32px;
-}
-.menu {
-  width: 18vw;
 }
 .menu-container {
   position: fixed;
