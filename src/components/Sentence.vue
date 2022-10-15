@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { RefreshFilled } from "@vicons/material";
 const content =
-  "年轻的人想着三十年前的月亮该是铜钱大的一个红黄的湿晕，像朵云轩信笺上落了一滴泪珠，陈旧而迷糊。老年人回忆中的三十年前的月亮是欢愉的，比眼前的月亮大、圆、白；然而隔着三十年的辛苦路望回看，再好的月色也不免带点凄凉。";
-const source = "张爱玲《金锁记》";
+  "我在土星照临下来到这个世界——土星运行最慢，是一颗充满迂回曲折、耽搁停留的行星……";
+const source = "瓦尔特·本雅明";
 </script>
 
 <template>
