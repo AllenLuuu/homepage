@@ -31,5 +31,6 @@ declare module '@vue/runtime-core' {
     NTag: typeof import('naive-ui')['NTag']
     Pictures: typeof import('./src/components/Pictures.vue')['default']
     Sentence: typeof import('./src/components/Sentence.vue')['default']
+    Tags: typeof import('./src/components/Tags.vue')['default']
   }
 }

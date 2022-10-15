@@ -1,11 +1,20 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { darkTheme } from "naive-ui";
+import { darkTheme, GlobalThemeOverrides } from "naive-ui";
 import Main from "./components/Main.vue";
 import { useMode, useWindowWidth } from "./store/index";
 
 const mode = useMode();
 const windowWidth = useWindowWidth();
+
+const themeOverrides: GlobalThemeOverrides = {
+  common: {
+    "primaryColor": "#C26EFFFF",
+    "primaryColorHover": "#D280FFFF",
+    "primaryColorPressed": "#AB37E0FF",
+    "primaryColorSuppl": "#D280FFFF"
+  },
+};
 
 onMounted(() => {
   let media = window.matchMedia("(prefers-color-scheme: dark)");
@@ -21,7 +30,7 @@ onMounted(() => {
       mode.setMode("light");
     }
   });
-  
+
   windowWidth.setWidth(document.body.clientWidth);
   window.onresize = () => {
     windowWidth.setWidth(document.body.clientWidth);
@@ -30,7 +39,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <n-config-provider :theme="mode.mode === 'dark' ? darkTheme : null">
+  <n-config-provider :theme="mode.mode === 'dark' ? darkTheme : null" :theme-overrides="themeOverrides">
     <Main />
   </n-config-provider>
 </template>

@@ -11,6 +11,7 @@ import { reactive, h } from "vue";
 import { useMode } from "../store/index";
 import { PlanetOutline } from "@vicons/ionicons5";
 import Hexagram from "../assets/hexagram.vue";
+import Tags from "./Tags.vue";
 
 const mode = useMode();
 
@@ -115,7 +116,7 @@ function renderMenuLabel(option: MenuOption) {
                 href="https://github.com/AllenLuuu"
                 target="_blank"
               >
-                GitHub
+                  <NButton text :focusable="false"> GitHub </NButton>
               </a>
               <n-popover placement="bottom-end" trigger="click">
                 <template #trigger>
@@ -158,11 +159,13 @@ function renderMenuLabel(option: MenuOption) {
                     src="saturn.svg"
                     style="background: transparent"
                   />
+                  <h2>Allen Lu</h2>
                 </div>
-                <div>
-                  <h1>你好</h1>
-                  <p>你好</p>
-                </div>
+                <NGrid :cols="5">
+                  <NGi :offset="1" :span="3">
+                    <Tags />
+                  </NGi>
+                </NGrid>
               </div>
               <Sentence />
               <Pictures />
@@ -242,6 +245,7 @@ function renderMenuLabel(option: MenuOption) {
   padding-top: 20px;
   display: flex;
   justify-content: center;
+  /* flex-direction: column; */
   align-items: center;
 }
 .left {
@@ -261,9 +265,6 @@ function renderMenuLabel(option: MenuOption) {
 .link {
   text-decoration: none;
   color: inherit;
-}
-.link:hover {
-  color: #5acea7;
 }
 .side-anchor {
   position: fixed;
