@@ -9,6 +9,8 @@ import { NPopover } from "naive-ui";
 import { MenuOption } from "naive-ui";
 import { reactive, h } from "vue";
 import { useMode } from "../store/index";
+import { PlanetOutline } from "@vicons/ionicons5";
+import Hexagram from "../assets/hexagram.vue";
 
 const mode = useMode();
 
@@ -51,6 +53,7 @@ const menuOptions = reactive<MenuOption[]>([
         label: "随机塔罗抽牌器",
         key: "random-tarot",
         href: "https://www.allenluuu.com/random-tarot",
+        icon: () => h(Hexagram),
       },
       {
         label: "敬请期待...",
@@ -86,10 +89,15 @@ function renderMenuLabel(option: MenuOption) {
 <template>
   <div class="container" ref="containerRef">
     <NLayout style="height: 100vh">
-      <NLayoutHeader style="height: 85px" bordered>
+      <NLayoutHeader style="height: 82.3px" bordered>
         <NGrid :cols="2">
           <NGi class="left">
-            <h1>游逛者小站</h1>
+            <div class="inline">
+              <NIcon :size="40">
+                <PlanetOutline />
+              </NIcon>
+              <h1 style="overflow: hidden; white-space: nowrap;">游逛者小站</h1>
+            </div>
           </NGi>
           <NGi class="right">
             <NSpace size="large">
@@ -124,7 +132,7 @@ function renderMenuLabel(option: MenuOption) {
       <NLayout
         id="main-content"
         position="absolute"
-        style="top: 85px"
+        style="top: 82.3px"
         has-sider
         :native-scrollbar="false"
       >
@@ -144,7 +152,12 @@ function renderMenuLabel(option: MenuOption) {
             <NSpace vertical>
               <div id="intro">
                 <div class="avatar">
-                  <NAvatar round :size="100"> Allen Lu </NAvatar>
+                  <NAvatar
+                    round
+                    :size="100"
+                    src="saturn.svg"
+                    style="background: transparent"
+                  />
                 </div>
                 <div>
                   <h1>你好</h1>
@@ -239,6 +252,11 @@ function renderMenuLabel(option: MenuOption) {
   justify-content: flex-end;
   align-items: center;
   padding-right: 20px;
+}
+.inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
 }
 .link {
   text-decoration: none;
