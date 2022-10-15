@@ -97,4 +97,7 @@ const articles = reactive([
   height: 28vw !important;
   object-fit: cover;
 }
+.n-card {
+  max-width: 28vw;
+}
 </style>
