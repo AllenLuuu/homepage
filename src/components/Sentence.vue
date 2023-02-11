@@ -1,33 +1,57 @@
 <script setup lang="ts">
+import { ref, computed, onMounted } from "vue";
 import { RefreshFilled } from "@vicons/material";
-const content =
-  "我在土星照临下来到这个世界——土星运行最慢，是一颗充满迂回曲折、耽搁停留的行星……";
-const source = "瓦尔特·本雅明";
+
+interface Collection {
+  content: string;
+  author: string;
+  book: string;
+}
+
+const collection = ref<Collection | null>(null);
+
+async function randSentence() {
+  const response = await fetch("https://collections.allenluuu.com/api/collection/starred/rand-one");
+  if (response.ok) {
+    const res = await response.json();
+    if (res.code === 0) {
+      collection.value = res.data as Collection;
+    }
+  }
+}
+
+const source = computed(() => {
+  let source = "";
+  if (collection.value?.author) {
+    source += collection.value.author;
+  }
+  if (collection.value?.book) {
+    source += `《${collection.value.book}》`;
+  }
+  return source;
+});
+
+onMounted(() => {
+  randSentence();
+});
 </script>
 
 <template>
   <div id="sentence">
     <div class="header">
       <h1>每日一句</h1>
-      <NPopover placement="top" trigger="hover">
-        <template #trigger>
-          <div>
-            <NButton disabled text :focusable="false">
-              <template #icon>
-                <n-icon>
-                  <RefreshFilled />
-                </n-icon>
-              </template>
-              换一句
-            </NButton>
-          </div>
+      <NButton text :focusable="false" @click="randSentence">
+        <template #icon>
+          <n-icon>
+            <RefreshFilled />
+          </n-icon>
         </template>
-        <div>还没做😖</div>
-      </NPopover>
+        换一句
+      </NButton>
     </div>
     <div class="quote">“</div>
-    <div class="content">{{ content }}</div>
-    <div class="content right" style="margin-top: 1.5rem">——{{ source }}</div>
+    <div class="content">{{ collection?.content }}</div>
+    <div v-if="collection?.author || collection?.book" class="content right" style="margin-top: 1.5rem">—— {{ source }}</div>
     <div class="quote right">”</div>
   </div>
 </template>

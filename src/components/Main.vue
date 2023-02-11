@@ -41,8 +41,7 @@ const menuOptions = reactive<MenuOption[]>([
       {
         label: "摘抄",
         key: "collection",
-        href: "collection.allenluuu.com",
-        disabled: true,
+        href: "https://collections.allenluuu.com",
         icon: () => h(BookOutlined),
       },
     ],
