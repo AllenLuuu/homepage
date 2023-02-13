@@ -98,7 +98,7 @@ function renderMenuLabel(option: MenuOption) {
               <NIcon :size="40">
                 <PlanetOutline />
               </NIcon>
-              <h1 style="overflow: hidden; white-space: nowrap;">游逛者小站</h1>
+              <h1 style="overflow: hidden; white-space: nowrap">游逛者小站</h1>
             </div>
           </NGi>
           <NGi class="right">
@@ -117,7 +117,7 @@ function renderMenuLabel(option: MenuOption) {
                 href="https://github.com/AllenLuuu"
                 target="_blank"
               >
-                  <NButton text :focusable="false"> GitHub </NButton>
+                <NButton text :focusable="false"> GitHub </NButton>
               </a>
               <n-popover placement="bottom-end" trigger="click">
                 <template #trigger>
@@ -231,6 +231,16 @@ function renderMenuLabel(option: MenuOption) {
                 <n-anchor-link title="精选图片" href="#pictures" />
                 <n-anchor-link title="最新文章" href="#articles" />
               </n-anchor>
+              <div style="margin-top: 100px">
+                <a
+                  href="https://clustrmaps.com/site/1bt0d"
+                  title="Visit tracker"
+                >
+                  <img
+                    src="//www.clustrmaps.com/map_v2.png?d=ohE-DU_LuDT0Jt5cgoMn1xILMAgOf00MgXmxFBm4vrE&cl=ffffff"
+                  />
+                </a>
+              </div>
             </div>
           </NGi>
         </NGrid>
