@@ -233,6 +233,7 @@ function renderMenuLabel(option: MenuOption) {
               </n-anchor>
               <div style="margin-top: 100px">
                 <a
+                  target="_blank"
                   href="https://clustrmaps.com/site/1bt0d"
                   title="Visit tracker"
                 >
