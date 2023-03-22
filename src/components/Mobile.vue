@@ -140,9 +140,7 @@ function renderMenuLabel(option: MenuOption) {
     <NLayout
       id="main-content"
       position="absolute"
-      style="top: 68.44px; padding-inline: 20px"
-      has-sider
-      :native-scrollbar="false"
+      style="top: 69px; padding-inline: 20px"
     >
       <NSpace vertical>
         <div id="intro">
