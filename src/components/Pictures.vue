@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { RefreshFilled } from "@vicons/material";
-import { ref } from "vue";
-import { useWindowWidth } from "../store/index";
-
-const windowWidth = useWindowWidth();
+import { ref, onMounted } from "vue";
 
 const pictures = ref<string[]>([
   "https://www.allenluuu.com/static/album/1.jpg",
@@ -16,6 +13,16 @@ const pictures = ref<string[]>([
   "https://www.allenluuu.com/static/album/8.jpg",
   "https://www.allenluuu.com/static/album/9.jpg",
 ]);
+
+const containerWidth = ref(0);
+const containerRef = ref<HTMLElement>();
+
+onMounted(() => {
+  containerWidth.value = containerRef.value?.clientWidth || 0;
+  window.addEventListener("resize", () => {
+    containerWidth.value = containerRef.value?.clientWidth || 0;
+  });
+});
 </script>
 
 <template>
@@ -39,70 +46,21 @@ const pictures = ref<string[]>([
       </NPopover>
     </div>
 
-    <NImageGroup>
-      <NSpace vertical>
-        <NSpace justify="center">
+    <div ref="containerRef">
+      <NImageGroup>
+        <NSpace justify="space-between" :wrap="true" :size="[containerWidth * 0.0125, containerWidth * 0.00675]">
           <NImage
-            :width="windowWidth.width * 0.18"
-            :height="windowWidth.width * 0.18"
+            v-for="picture in pictures"
+            :key="picture"
+            :src="picture"
+            alt="image"
+            :width="containerWidth * 0.325"
+            :height="containerWidth * 0.325"
             object-fit="cover"
-            :src="pictures[0]"
-          />
-          <NImage
-            :width="windowWidth.width * 0.18"
-            :height="windowWidth.width * 0.18"
-            object-fit="cover"
-            :src="pictures[1]"
-          />
-          <NImage
-            :width="windowWidth.width * 0.18"
-            :height="windowWidth.width * 0.18"
-            object-fit="cover"
-            :src="pictures[2]"
           />
         </NSpace>
-        <NSpace justify="center">
-          <NImage
-            :width="windowWidth.width * 0.18"
-            :height="windowWidth.width * 0.18"
-            object-fit="cover"
-            :src="pictures[3]"
-          />
-          <NImage
-            :width="windowWidth.width * 0.18"
-            :height="windowWidth.width * 0.18"
-            object-fit="cover"
-            :src="pictures[4]"
-          />
-          <NImage
-            :width="windowWidth.width * 0.18"
-            :height="windowWidth.width * 0.18"
-            object-fit="cover"
-            :src="pictures[5]"
-          />
-        </NSpace>
-        <NSpace justify="center">
-          <NImage
-            :width="windowWidth.width * 0.18"
-            :height="windowWidth.width * 0.18"
-            object-fit="cover"
-            :src="pictures[6]"
-          />
-          <NImage
-            :width="windowWidth.width * 0.18"
-            :height="windowWidth.width * 0.18"
-            object-fit="cover"
-            :src="pictures[7]"
-          />
-          <NImage
-            :width="windowWidth.width * 0.18"
-            :height="windowWidth.width * 0.18"
-            object-fit="cover"
-            :src="pictures[8]"
-          />
-        </NSpace>
-      </NSpace>
-    </NImageGroup>
+      </NImageGroup>
+    </div>
   </div>
 </template>
 
@@ -112,9 +70,5 @@ const pictures = ref<string[]>([
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
-}
-.img-container {
-  width: 17vw;
-  height: 17vw;
 }
 </style>

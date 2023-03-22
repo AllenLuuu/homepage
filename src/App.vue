@@ -2,10 +2,9 @@
 import { onMounted } from "vue";
 import { darkTheme, GlobalThemeOverrides } from "naive-ui";
 import Main from "./components/Main.vue";
-import { useMode, useWindowWidth } from "./store/index";
+import { useMode } from "./store/index";
 
 const mode = useMode();
-const windowWidth = useWindowWidth();
 
 const themeOverrides: GlobalThemeOverrides = {
   common: {
@@ -30,11 +29,6 @@ onMounted(() => {
       mode.setMode("light");
     }
   });
-
-  windowWidth.setWidth(document.body.clientWidth);
-  window.onresize = () => {
-    windowWidth.setWidth(document.body.clientWidth);
-  };
 });
 </script>
 

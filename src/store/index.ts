@@ -15,22 +15,3 @@ export const useMode = defineStore("mode", {
     }
   },
 });
-
-export const useWindowWidth = defineStore("windowWidth", {
-  state: () => ({
-    w: 0,
-  }),
-  getters: {
-    isMobile(): boolean {
-      return this.w < 768;
-    },
-    width(): number {
-      return this.w;
-    }
-  },
-  actions: {
-    setWidth(width: number) {
-      this.w = width;
-    }
-  },
-});
