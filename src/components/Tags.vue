@@ -12,9 +12,9 @@
     <NTag type="success">睡觉爱好者</NTag>
     <NTag type="warning">O麦金不定期持有者</NTag>
     <NTag type="primary">张爱玲忠实粉丝</NTag>
-    <NTag type="error">喜欢王菲</NTag>
+    <NTag type="error">王菲歌迷</NTag>
     <NTag type="warning">快门民工</NTag>
-    <NTag type="info">一台牛顿反射式望远镜的主人</NTag>
+    <NTag type="info">天文爱好者</NTag>
     <NTag type="default">无知的人</NTag>
   </NSpace>
 </template>

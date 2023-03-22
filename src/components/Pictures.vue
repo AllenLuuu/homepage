@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { RefreshFilled } from "@vicons/material";
 import { ref, onMounted } from "vue";
+import { useMedia } from "../store/index";
+
+const media = useMedia();
 
 const pictures = ref<string[]>([
   "https://www.allenluuu.com/static/album/1.jpg",
@@ -28,7 +31,8 @@ onMounted(() => {
 <template>
   <div id="pictures">
     <div class="header">
-      <h1>精选图片</h1>
+      <h2 v-if="media.isMobile">精选图片</h2>
+      <h1 v-else>精选图片</h1>
       <NPopover placement="top" trigger="hover">
         <template #trigger>
           <div>

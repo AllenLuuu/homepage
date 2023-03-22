@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { reactive } from "vue";
+import { useMedia } from "../store";
+
+const media = useMedia();
 
 const articles = reactive([
   {
@@ -32,49 +35,30 @@ const articles = reactive([
 <template>
   <div id="articles">
     <div class="header">
-      <h1>最新文章</h1>
+      <h2 v-if="media.isMobile">最新文章</h2>
+      <h1 v-else>最新文章</h1>
     </div>
 
-    <NImageGroup>
-      <NSpace vertical size="large">
-        <NSpace justify="center">
-          <a :href="articles[0].link" target="_blank" class="link">
-            <n-card :title="articles[0].title" embedded hoverable>
-              <template #cover>
-                <img class="cover" :src="articles[0].cover" />
-              </template>
-              {{ articles[0].content }}
-            </n-card>
-          </a>
-          <a :href="articles[1].link" target="_blank" class="link">
-            <n-card :title="articles[1].title" embedded hoverable>
-              <template #cover>
-                <img class="cover" :src="articles[1].cover" />
-              </template>
-              {{ articles[1].content }}
-            </n-card>
-          </a>
-        </NSpace>
-        <NSpace justify="center">
-          <a :href="articles[2].link" target="_blank" class="link">
-            <n-card :title="articles[2].title" embedded hoverable>
-              <template #cover>
-                <img class="cover" :src="articles[2].cover" />
-              </template>
-              {{ articles[2].content }}
-            </n-card>
-          </a>
-          <a :href="articles[3].link" target="_blank" class="link">
-            <n-card :title="articles[3].title" embedded hoverable>
-              <template #cover>
-                <img class="cover" :src="articles[3].cover" />
-              </template>
-              {{ articles[3].content }}
-            </n-card>
-          </a>
-        </NSpace>
-      </NSpace>
-    </NImageGroup>
+    <div class="container">
+      <a
+        v-for="article in articles"
+        :href="article.link"
+        target="_blank"
+        class="link"
+      >
+        <n-card
+          :title="article.title"
+          embedded
+          hoverable
+          :size="media.isMobile ? 'small' : 'medium'"
+        >
+          <template #cover>
+            <img class="cover" :src="article.cover" />
+          </template>
+          {{ article.content }}
+        </n-card>
+      </a>
+    </div>
   </div>
 </template>
 
@@ -88,16 +72,19 @@ const articles = reactive([
   align-items: center;
   margin-bottom: 1.5rem;
 }
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 15px;
+}
 .link {
   text-decoration: none;
   color: inherit;
+  flex: 0 1 49.5%;
 }
 .cover {
-  width: 28vw !important;
-  height: 28vw !important;
   object-fit: cover;
-}
-.n-card {
-  max-width: 28vw;
+  aspect-ratio: 1;
 }
 </style>

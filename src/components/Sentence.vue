@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
 import { RefreshFilled } from "@vicons/material";
+import { useMedia } from "../store/index";
 
 interface Collection {
   content: string;
@@ -8,6 +9,7 @@ interface Collection {
   book: string;
 }
 
+const media = useMedia();
 const collection = ref<Collection | null>(null);
 
 async function randSentence() {
@@ -39,7 +41,8 @@ onMounted(() => {
 <template>
   <div id="sentence">
     <div class="header">
-      <h1>每日一句</h1>
+      <h2 v-if="media.isMobile">每日一句</h2>
+      <h1 v-else>每日一句</h1>
       <NButton text :focusable="false" @click="randSentence">
         <template #icon>
           <n-icon>
@@ -61,7 +64,6 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
 }
 .quote {
   width: auto;
@@ -81,5 +83,18 @@ onMounted(() => {
   font-family: v-sans, v-mono, "Times New Roman", Times, serif;
   padding-inline-start: 7rem;
   padding-inline-end: 7rem;
+}
+
+@media (max-width: 768px) {
+  .quote {
+    font-size: 3rem;
+    padding-inline-start: 1rem;
+    padding-inline-end: 1rem;
+  }
+  .content {
+    font-size: 1rem;
+    padding-inline-start: 3rem;
+    padding-inline-end: 3rem;
+  }
 }
 </style>
