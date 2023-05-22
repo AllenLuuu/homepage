@@ -83,6 +83,7 @@ onMounted(() => {
   font-family: v-sans, v-mono, "Times New Roman", Times, serif;
   padding-inline-start: 7rem;
   padding-inline-end: 7rem;
+  white-space: pre-line;
 }
 
 @media (max-width: 768px) {
