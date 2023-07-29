@@ -6,8 +6,8 @@ import {
   BookOutlined,
   MenuRound,
 } from "@vicons/material";
-import { NPopover } from "naive-ui";
-import { MenuOption } from "naive-ui";
+import { NPopover, MenuOption } from "naive-ui";
+import { MobileButtonOverrides } from "./common-themes";
 import { reactive, h, ref } from "vue";
 import { useMode } from "../store/index";
 import Hexagram from "../assets/hexagram.vue";
@@ -99,7 +99,12 @@ function renderMenuLabel(option: MenuOption) {
       <NGrid :cols="2">
         <NGi class="left">
           <div class="inline">
-            <NButton text :focusable="false" @click="toggleDrawer">
+            <NButton
+              text
+              :focusable="false"
+              :theme-overrides="MobileButtonOverrides"
+              @click="toggleDrawer"
+            >
               <template #icon>
                 <NIcon size="25">
                   <MenuRound />
@@ -122,7 +127,13 @@ function renderMenuLabel(option: MenuOption) {
             </NButton>
 
             <a class="link" href="https://github.com/AllenLuuu" target="_blank">
-              <NButton text :focusable="false"> GitHub </NButton>
+              <NButton
+                text
+                :focusable="false"
+                :theme-overrides="MobileButtonOverrides"
+              >
+                GitHub
+              </NButton>
             </a>
             <n-popover placement="bottom-end" trigger="click">
               <template #trigger>
