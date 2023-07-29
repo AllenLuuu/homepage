@@ -1,18 +1,16 @@
 <script setup lang="ts">
+import { PlanetOutline } from "@vicons/ionicons5";
 import {
+  BookOutlined,
+  CameraOutlined,
   DarkModeOutlined,
   LightModeOutlined,
-  CameraOutlined,
-  BookOutlined,
 } from "@vicons/material";
-import { NPopover } from "naive-ui";
-import { MenuOption } from "naive-ui";
-import { reactive, h } from "vue";
-import { useMode } from "../store/index";
-import { PlanetOutline } from "@vicons/ionicons5";
+import { MenuOption, NPopover } from "naive-ui";
+import { h, reactive } from "vue";
 import Hexagram from "../assets/hexagram.vue";
+import { useMode } from "../store/index";
 import Tags from "./Tags.vue";
-import gzhQrCode from "/gzh.jpg";
 import beianIcon from "/beian-icon.png";
 
 const mode = useMode();
@@ -103,6 +101,13 @@ function renderMenuLabel(option: MenuOption) {
           </NGi>
           <NGi class="right">
             <NSpace size="large">
+              <a
+                class="link"
+                href="https://github.com/AllenLuuu"
+                target="_blank"
+              >
+                <NButton text :focusable="false"> GitHub </NButton>
+              </a>
               <NButton text :focusable="false" @click="changeMode">
                 <template #icon>
                   <NIcon size="20">
@@ -111,22 +116,6 @@ function renderMenuLabel(option: MenuOption) {
                   </NIcon>
                 </template>
               </NButton>
-
-              <a
-                class="link"
-                href="https://github.com/AllenLuuu"
-                target="_blank"
-              >
-                <NButton text :focusable="false"> GitHub </NButton>
-              </a>
-              <n-popover placement="bottom-end" trigger="click">
-                <template #trigger>
-                  <NButton text> 公众号 </NButton>
-                </template>
-                <div>
-                  <img :src="gzhQrCode" alt="公众号" />
-                </div>
-              </n-popover>
             </NSpace>
           </NGi>
         </NGrid>

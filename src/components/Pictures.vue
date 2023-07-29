@@ -2,6 +2,7 @@
 import { RefreshFilled } from "@vicons/material";
 import { ref, onMounted } from "vue";
 import { useMedia } from "../store/index";
+import { MobileButtonOverrides } from "./common-themes";
 
 const media = useMedia();
 
@@ -36,7 +37,12 @@ onMounted(() => {
       <NPopover placement="top" trigger="hover">
         <template #trigger>
           <div>
-            <NButton disabled text :focusable="false">
+            <NButton
+              disabled
+              text
+              :focusable="false"
+              :theme-overrides="media.isMobile ? MobileButtonOverrides : {}"
+            >
               <template #icon>
                 <n-icon>
                   <RefreshFilled />
@@ -52,7 +58,11 @@ onMounted(() => {
 
     <div ref="containerRef">
       <NImageGroup>
-        <NSpace justify="space-between" :wrap="true" :size="[containerWidth * 0.0125, containerWidth * 0.00675]">
+        <NSpace
+          justify="space-between"
+          :wrap="true"
+          :size="[containerWidth * 0.0125, containerWidth * 0.00675]"
+        >
           <NImage
             v-for="picture in pictures"
             :key="picture"

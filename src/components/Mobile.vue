@@ -1,18 +1,17 @@
 <script setup lang="ts">
 import {
+  BookOutlined,
+  CameraOutlined,
   DarkModeOutlined,
   LightModeOutlined,
-  CameraOutlined,
-  BookOutlined,
   MenuRound,
 } from "@vicons/material";
-import { NPopover } from "naive-ui";
-import { MenuOption } from "naive-ui";
-import { reactive, h, ref } from "vue";
-import { useMode } from "../store/index";
+import { MenuOption, NPopover } from "naive-ui";
+import { h, reactive, ref } from "vue";
 import Hexagram from "../assets/hexagram.vue";
+import { useMode } from "../store/index";
+import { MobileButtonOverrides } from "./common-themes";
 import Tags from "./Tags.vue";
-import gzhQrCode from "/gzh.jpg";
 import beianIcon from "/beian-icon.png";
 
 const mode = useMode();
@@ -99,7 +98,12 @@ function renderMenuLabel(option: MenuOption) {
       <NGrid :cols="2">
         <NGi class="left">
           <div class="inline">
-            <NButton text :focusable="false" @click="toggleDrawer">
+            <NButton
+              text
+              :focusable="false"
+              :theme-overrides="MobileButtonOverrides"
+              @click="toggleDrawer"
+            >
               <template #icon>
                 <NIcon size="25">
                   <MenuRound />
@@ -112,6 +116,15 @@ function renderMenuLabel(option: MenuOption) {
 
         <NGi class="right">
           <NSpace>
+            <a class="link" href="https://github.com/AllenLuuu" target="_blank">
+              <NButton
+                text
+                :focusable="false"
+                :theme-overrides="MobileButtonOverrides"
+              >
+                GitHub
+              </NButton>
+            </a>
             <NButton text :focusable="false" @click="changeMode">
               <template #icon>
                 <NIcon size="20">
@@ -120,18 +133,6 @@ function renderMenuLabel(option: MenuOption) {
                 </NIcon>
               </template>
             </NButton>
-
-            <a class="link" href="https://github.com/AllenLuuu" target="_blank">
-              <NButton text :focusable="false"> GitHub </NButton>
-            </a>
-            <n-popover placement="bottom-end" trigger="click">
-              <template #trigger>
-                <NButton text> 公众号 </NButton>
-              </template>
-              <div>
-                <img :src="gzhQrCode" alt="公众号" />
-              </div>
-            </n-popover>
           </NSpace>
         </NGi>
       </NGrid>

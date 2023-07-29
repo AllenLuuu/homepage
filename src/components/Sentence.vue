@@ -2,6 +2,7 @@
 import { ref, computed, onMounted } from "vue";
 import { RefreshFilled } from "@vicons/material";
 import { useMedia } from "../store/index";
+import { MobileButtonOverrides } from "./common-themes";
 
 interface Collection {
   content: string;
@@ -13,7 +14,9 @@ const media = useMedia();
 const collection = ref<Collection | null>(null);
 
 async function randSentence() {
-  const response = await fetch("https://collections.allenluuu.com/api/collection/starred/rand-one");
+  const response = await fetch(
+    "https://collections.allenluuu.com/api/collection/starred/rand-one"
+  );
   if (response.ok) {
     const res = await response.json();
     if (res.code === 0) {
@@ -43,7 +46,12 @@ onMounted(() => {
     <div class="header">
       <h2 v-if="media.isMobile">每日一句</h2>
       <h1 v-else>每日一句</h1>
-      <NButton text :focusable="false" @click="randSentence">
+      <NButton
+        text
+        :focusable="false"
+        :theme-overrides="media.isMobile ? MobileButtonOverrides : {}"
+        @click="randSentence"
+      >
         <template #icon>
           <n-icon>
             <RefreshFilled />
@@ -54,7 +62,13 @@ onMounted(() => {
     </div>
     <div class="quote">“</div>
     <div class="content">{{ collection?.content }}</div>
-    <div v-if="collection?.author || collection?.book" class="content right" style="margin-top: 1.5rem">—— {{ source }}</div>
+    <div
+      v-if="collection?.author || collection?.book"
+      class="content right"
+      style="margin-top: 1.5rem"
+    >
+      —— {{ source }}
+    </div>
     <div class="quote right">”</div>
   </div>
 </template>
